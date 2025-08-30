@@ -1,0 +1,45 @@
+==id $Id: bgui_lib.sfd,v 1.0 2025/08/30 00:00:00 bgui Exp $
+* "bgui.library"
+==license Copyright 2025 amigazen project
+==license Copyright 1998 Manuel Lemos
+==license Copyright 1996-1997 Ian J. Einman
+==license Copyright 1993-1996 Jaba Development
+==license Copyright 1993-1996 Jan van den Baard
+==license All Rights Reserved
+==base _BGUIBase
+==basetype struct Library *
+==libname bgui.library
+==bias 30
+==version 41.11
+APTR BGUI_GetClassPtr(ULONG)(D0)
+APTR BGUI_NewObjectA(ULONG,struct TagItem *)(D0,A0)
+BOOL BGUI_RequestA(struct Window *,struct Requester *,APTR)(A0,A1,A2)
+BOOL BGUI_Help(struct Window *,STRPTR,STRPTR,ULONG)(A0,A1,A2,D0)
+APTR BGUI_LockWindow(struct Window *)(A0)
+VOID BGUI_UnlockWindow(APTR)(A0)
+BOOL BGUI_DoGadgetMethodA(struct Gadget *,struct Window *,struct Requester *,struct IntuiMessage *)(A0,A1,A2,A3)
+==private
+APTR BGUI_AllocPoolMem(ULONG)(D0)
+VOID BGUI_FreePoolMem(APTR)(A0)
+==public
+struct BitMap * BGUI_AllocBitMap(ULONG,ULONG,ULONG,ULONG,struct BitMap *)(D0,D1,D2,D3,A0)
+VOID BGUI_FreeBitMap(struct BitMap *)(A0)
+struct BitMap * BGUI_CreateRPortBitMap(struct RastPort *,ULONG,ULONG,ULONG)(A0,D0,D1,D2)
+VOID BGUI_FreeRPortBitMap(struct RastPort *)(A0)
+VOID BGUI_InfoTextSize(struct RastPort *,STRPTR,ULONG *,ULONG *)(A0,A1,A2,A3)
+VOID BGUI_InfoText(struct RastPort *,STRPTR,struct IBox *,struct DrawInfo *)(A0,A1,A2,A3)
+STRPTR BGUI_GetLocaleStr(struct Catalog *,ULONG)(A0,D0)
+STRPTR BGUI_GetCatalogStr(struct Catalog *,ULONG,STRPTR)(A0,D0,A1)
+VOID BGUI_FillRectPattern(struct RastPort *,struct BitMap *,ULONG,ULONG,ULONG,ULONG)(A1,A0,D0,D1,D2,D3)
+VOID BGUI_PostRender(struct Class *,struct Gadget *,struct GP *)(A0,A2,A1)
+struct Class * BGUI_MakeClassA(struct TagItem *)(A0)
+VOID BGUI_FreeClass(struct Class *)(A0)
+BOOL BGUI_PackStructureTags(APTR,struct TagItem *,struct TagItem *)(A0,A1,A2)
+BOOL BGUI_UnpackStructureTags(APTR,struct TagItem *,struct TagItem *)(A0,A1,A2)
+==private
+APTR BGUI_GetDefaultTags(ULONG)(D0)
+APTR BGUI_DefaultPrefs()()
+BOOL BGUI_LoadPrefs(STRPTR)(A0)
+APTR BGUI_AllocPoolMemDebug(ULONG,STRPTR,ULONG)(D0,A0,D1)
+VOID BGUI_FreePoolMemDebug(APTR,STRPTR,ULONG)(A0,A1,D0)
+==end

@@ -1,5 +1,5 @@
 /*
- * @(#) $Header: /cvsroot/bgui/gadgets/LayoutGroup/include/LayoutGroupClass.h,v 41.11 2000/05/09 20:34:52 mlemos Exp $
+ * @(#) $Header$
  *
  * BGUI library
  *
@@ -7,7 +7,19 @@
  * (C) Copyright 1998 Manuel Lemos.
  * All Rights Reserved.
  *
- * $Log: LayoutGroupClass.h,v $
+ * $Log$
+ * Revision 42.2  2003/01/18 19:10:18  chodorowski
+ * Instead of using the _AROS or __AROS preprocessor symbols, use __AROS__.
+ *
+ * Revision 42.1  2000/07/07 17:13:31  stegerg
+ * in method structures use STACKULONG, STACKUWORD; etc. Should still
+ * work on Amiga, because if __AROS__ is NOT defined, then STACKULONG
+ * is defined back to ULONG, STACKUWORD to UWORD, etc. ==> like it
+ * was initially.
+ *
+ * Revision 42.0  2000/05/09 22:21:05  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:34:52  mlemos
  * Bumped to revision 41.11
  *
@@ -22,9 +34,14 @@
 
 #include <intuition/classes.h>
 
+#ifndef __AROS__
+#undef STACKULONG
+#define STACKULONG ULONG
+#endif
+
 struct ogpMGet
 {
-	ULONG MethodID;
+	STACKULONG MethodID;
 	struct TagItem *ogpg_AttrList;
 };
 

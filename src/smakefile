@@ -25,7 +25,7 @@
 #
 # Revision 42.3  2000/08/08 21:47:46  chodorowski
 # Added contrib/bgui/include/bgui_compilerspecific.h to be copied to
-# //SDK/Include_h/bgui/bgui_compilerspecific.h at build-time (like the other
+#  /SDK/Include_h/bgui/bgui_compilerspecific.h at build-time (like the other
 # includes). Could someone please fix this for the AROS build to?
 #
 # Revision 42.2  2000/08/08 19:24:11  chodorowski
@@ -69,16 +69,16 @@
 # Added the test13 program to the build.
 #
 # Revision 41.10.2.43  1999/08/17 19:08:05  mlemos
-# Changed the name of the script that adds an assigned directory to //SDK/libs/  to
+# Changed the name of the script that adds an assigned directory to  /SDK/libs/  to
 # find BGUI libraries to MakeAssign.
 #
 # Revision 41.10.2.42  1999/08/13 17:24:00  mlemos
 # Made the bgui_treeview.h and the respective stub include be installed in
-# //SDK/Include_h/bgui and //SDK/Include_h/libraries respectively.
+#  /SDK/Include_h/bgui and  /SDK/Include_h/libraries respectively.
 #
 # Revision 41.10.2.41  1999/08/13 04:35:00  mlemos
-# Made the bgui.h and bgui_macros.h be installed in //SDK/Include_h/bgui and the
-# respective stubs be installed in //SDK/Include_h/libraries.
+# Made the bgui.h and bgui_macros.h be installed in  /SDK/Include_h/bgui and the
+# respective stubs be installed in  /SDK/Include_h/libraries.
 # Fixed the install location of the bgui_treeview.h include.
 #
 # Revision 41.10.2.40  1999/08/08 23:08:30  mlemos
@@ -125,7 +125,7 @@
 # the build.
 # Added the generation of documentation in HTML and AmigaGuide formats to the
 # build.
-# Added an Assign script to the users distribution archive to make sure //SDK/libs/
+# Added an Assign script to the users distribution archive to make sure  /SDK/libs/
 # finds the libraries of BGUI and extra gadgets.
 # Ensured that the generated HTML files are removed by the clean target.
 #
@@ -238,7 +238,7 @@
 # Made BOOPSI modules be linked with debug information.
 #
 # Revision 41.10.2.3  1998/02/26 19:09:57  mlemos
-# Corrected //SDK/libs/bgui.library dependencies
+# Corrected  /SDK/libs/bgui.library dependencies
 #
 # Revision 41.10.2.2  1998/02/26 18:42:48  mlemos
 # Fixed fd file target directory
@@ -264,38 +264,38 @@ DEBUG_OPTIONS=DEBUG=FULLFLUSH DEFINE DEBUG_BGUI
 STANDARD_OPTIONS=NODEBUG OPT
 ENHANCED_OPTIONS=NODEBUG OPT OPTTIME CPU=68020 DEFINE=ENHANCED
 
-PRAGMA_DIRECTORY=//SDK/Include_h/pragma
-INLINE_DIRECTORY=//SDK/Include_h/inline
-FD_DIRECTORY=//SDK/Include_h/fd
+PRAGMA_DIRECTORY= /SDK/Include_h/pragma
+INLINE_DIRECTORY= /SDK/Include_h/inline
+FD_DIRECTORY= /SDK/Include_h/fd
 
 includes= \
-//SDK/Include_h/libraries/bgui.h \
-//SDK/Include_h/bgui/bgui.h \
-//SDK/Include_h/bgui/bgui_image.h \
-//SDK/Include_h/bgui/bgui_asl.h \
-//SDK/Include_h/bgui/bgui_arexx.h \
-//SDK/Include_h/bgui/bgui_cx.h \
-//SDK/Include_h/bgui/bgui_obsolete.h \
-//SDK/Include_h/bgui/bgui_prefs.h \
-//SDK/Include_h/bgui/bgui_compilerspecific.h \
-//SDK/Include_h/libraries/bgui_macros.h \
-//SDK/Include_h/bgui/bgui_macros.h \
-//SDK/Include_h/libraries/bgui_treeview.h \
-//SDK/Include_h/bgui/bgui_treeview.h \
-//SDK/Include_h/libraries/bgui_bar.h \
-//SDK/Include_h/bgui/bgui_bar.h \
-//SDK/Include_h/libraries/bgui_layoutgroup.h \
-//SDK/Include_h/bgui/bgui_layoutgroup.h \
-//SDK/Include_h/proto/bgui.h \
-//SDK/Include_h/clib/bgui_protos.h \
-//SDK/Include_h/pragmas/bgui_pragmas.h \
+ /SDK/Include_h/libraries/bgui.h \
+ /SDK/Include_h/bgui/bgui.h \
+ /SDK/Include_h/bgui/bgui_image.h \
+ /SDK/Include_h/bgui/bgui_asl.h \
+ /SDK/Include_h/bgui/bgui_arexx.h \
+ /SDK/Include_h/bgui/bgui_cx.h \
+ /SDK/Include_h/bgui/bgui_obsolete.h \
+ /SDK/Include_h/bgui/bgui_prefs.h \
+ /SDK/Include_h/bgui/bgui_compilerspecific.h \
+ /SDK/Include_h/libraries/bgui_macros.h \
+ /SDK/Include_h/bgui/bgui_macros.h \
+ /SDK/Include_h/libraries/bgui_treeview.h \
+ /SDK/Include_h/bgui/bgui_treeview.h \
+ /SDK/Include_h/libraries/bgui_bar.h \
+ /SDK/Include_h/bgui/bgui_bar.h \
+ /SDK/Include_h/libraries/bgui_layoutgroup.h \
+ /SDK/Include_h/bgui/bgui_layoutgroup.h \
+ /SDK/Include_h/proto/bgui.h \
+ /SDK/Include_h/clib/bgui_protos.h \
+ /SDK/Include_h/pragmas/bgui_pragmas.h \
 $(PRAGMA_DIRECTORY)/bgui_lib.h \
 $(FD_DIRECTORY)/bgui_lib.fd \
 $(INLINE_DIRECTORY)/bgui.h
 
 build_and_install: debug_build
    @smake -s -f smakefile BUILD_TYPE=D install
-   @echo "bgui.library is built and installed in //SDK/libs"
+   @echo "bgui.library is built and installed in  /SDK/libs"
 
 debug_build:
    @echo "Making BGUI version for debugging..."
@@ -326,9 +326,9 @@ tools: $(includes) $(tools)
 install: build-sasc/KillBGUI build-sasc/bgui.library.$(BUILD_TYPE)
    @echo "Installing BGUI library..."
    @build-sasc/KillBGUI
-   @copy build-sasc/bgui.library.$(BUILD_TYPE) //SDK/libs/bgui.library
+   @copy build-sasc/bgui.library.$(BUILD_TYPE)  /SDK/libs/bgui.library
 
-//SDK/libs/bgui.library: 
+ /SDK/libs/bgui.library: 
    @smake -s -f smakefile debug_install
 
 PROGRAM_OPTIONS = RESETOPTIONS NOVER NOICONS LINK DEBUG=FULLFLUSH ERRORREXX NOSTACKCHECK ObjectName=o/
@@ -467,13 +467,13 @@ build-sasc/CAD: $(includes) o/cad_main.o o/cad_file.o o/cad_support.o
 CAD_PROGRAM: $(includes) cad/cad_main.c cad/cad_file.c cad/cad_support.c CAD/cad.h
    @smake -s -f smakefile BUILD_TYPE=D build-sasc/CAD
 
-.cad.doc: //SDK/libs/bgui.library build-sasc/CAD
+.cad.doc:  /SDK/libs/bgui.library build-sasc/CAD
    @build-sasc/CAD $*.cad TO $@ DOC
 
-.cad.guide: //SDK/libs/bgui.library build-sasc/CAD
+.cad.guide:  /SDK/libs/bgui.library build-sasc/CAD
    @build-sasc/CAD $*.cad TO $@ GUIDE
 
-.cad.html: //SDK/libs/bgui.library build-sasc/CAD
+.cad.html:  /SDK/libs/bgui.library build-sasc/CAD
    @build-sasc/CAD $*.cad TO $@ HTML
 
 docs= \
@@ -818,7 +818,7 @@ t:build_users_archive: update_revision enhanced_build standard_build doc extra_g
    @slink from gadgets/bgui_treeview.gadget to t:bgui/libs/gadgets/bgui_treeview.gadget NODEBUG NOICONS QUIET
    @slink from gadgets/bgui_bar.gadget to t:bgui/libs/gadgets/bgui_bar.gadget NODEBUG NOICONS QUIET
    @slink from gadgets/bgui_layoutgroup.gadget to t:bgui/libs/gadgets/bgui_layoutgroup.gadget NODEBUG NOICONS QUIET
-   @echo "Assign //SDK/libs/ libs ADD" to t:bgui/MakeAssign
+   @echo "Assign  /SDK/libs/ libs ADD" to t:bgui/MakeAssign
    @protect t:bgui/MakeAssign +s
    @copy icons/def_Script.info to t:bgui/MakeAssign.info
    @makedir t:bgui/Examples
@@ -919,7 +919,7 @@ t:build_arexx_library_archive: RexxBGUI/rexxbgui.library
    @makedir t:bgui/libs
    @echo Copying RexxBGUI library...
    @slink from RexxBGUI/rexxbgui.library to t:bgui/libs/rexxbgui.library NODEBUG NOICONS QUIET
-   @echo "Assign //SDK/libs/ libs ADD" to t:bgui/MakeAssign
+   @echo "Assign  /SDK/libs/ libs ADD" to t:bgui/MakeAssign
    @protect t:bgui/MakeAssign +s
    @copy icons/def_Script.info to t:bgui/MakeAssign.info
    @makedir t:bgui/Examples
@@ -1079,26 +1079,26 @@ build-sasc/ViewGroup: examples/ViewGroup.c
 $(PRAGMA_DIRECTORY) $(INLINE_DIRECTORY) $(FD_DIRECTORY):
    makedir $@
 
-//SDK/Include_h/libraries/bgui.h:             include/libraries_bgui.h
-//SDK/Include_h/bgui/bgui.h:                  include/bgui.h
-//SDK/Include_h/bgui/bgui_image.h:            include/bgui_image.h
-//SDK/Include_h/bgui/bgui_asl.h:              include/bgui_asl.h
-//SDK/Include_h/bgui/bgui_arexx.h:            include/bgui_arexx.h
-//SDK/Include_h/bgui/bgui_cx.h:               include/bgui_cx.h
-//SDK/Include_h/bgui/bgui_obsolete.h:         include/bgui_obsolete.h
-//SDK/Include_h/bgui/bgui_prefs.h:            include/bgui_prefs.h
-//SDK/Include_h/bgui/bgui_compilerspecific.h: include/bgui_compilerspecific.h
-//SDK/Include_h/libraries/bgui_macros.h:      include/libraries_bgui_macros.h
-//SDK/Include_h/bgui/bgui_macros.h:           include/bgui_macros.h
-//SDK/Include_h/libraries/bgui_treeview.h:    include/libraries_bgui_treeview.h
-//SDK/Include_h/bgui/bgui_treeview.h:         gadgets/TreeView/include/TreeViewClass.h
-//SDK/Include_h/libraries/bgui_bar.h:         include/libraries_bgui_bar.h
-//SDK/Include_h/bgui/bgui_bar.h:              gadgets/Bar/include/BarClass.h
-//SDK/Include_h/libraries/bgui_layoutgroup.h: include/libraries_bgui_layoutgroup.h
-//SDK/Include_h/bgui/bgui_layoutgroup.h:      gadgets/LayoutGroup/include/LayoutGroupClass.h
-//SDK/Include_h/proto/bgui.h:                 include/bgui_proto.h
-//SDK/Include_h/clib/bgui_protos.h:           include/bgui_protos.h
-//SDK/Include_h/pragmas/bgui_pragmas.h:       include/bgui_pragmas.h
+ /SDK/Include_h/libraries/bgui.h:             include/libraries_bgui.h
+ /SDK/Include_h/bgui/bgui.h:                  include/bgui.h
+ /SDK/Include_h/bgui/bgui_image.h:            include/bgui_image.h
+ /SDK/Include_h/bgui/bgui_asl.h:              include/bgui_asl.h
+ /SDK/Include_h/bgui/bgui_arexx.h:            include/bgui_arexx.h
+ /SDK/Include_h/bgui/bgui_cx.h:               include/bgui_cx.h
+ /SDK/Include_h/bgui/bgui_obsolete.h:         include/bgui_obsolete.h
+ /SDK/Include_h/bgui/bgui_prefs.h:            include/bgui_prefs.h
+ /SDK/Include_h/bgui/bgui_compilerspecific.h: include/bgui_compilerspecific.h
+ /SDK/Include_h/libraries/bgui_macros.h:      include/libraries_bgui_macros.h
+ /SDK/Include_h/bgui/bgui_macros.h:           include/bgui_macros.h
+ /SDK/Include_h/libraries/bgui_treeview.h:    include/libraries_bgui_treeview.h
+ /SDK/Include_h/bgui/bgui_treeview.h:         gadgets/TreeView/include/TreeViewClass.h
+ /SDK/Include_h/libraries/bgui_bar.h:         include/libraries_bgui_bar.h
+ /SDK/Include_h/bgui/bgui_bar.h:              gadgets/Bar/include/BarClass.h
+ /SDK/Include_h/libraries/bgui_layoutgroup.h: include/libraries_bgui_layoutgroup.h
+ /SDK/Include_h/bgui/bgui_layoutgroup.h:      gadgets/LayoutGroup/include/LayoutGroupClass.h
+ /SDK/Include_h/proto/bgui.h:                 include/bgui_proto.h
+ /SDK/Include_h/clib/bgui_protos.h:           include/bgui_protos.h
+ /SDK/Include_h/pragmas/bgui_pragmas.h:       include/bgui_pragmas.h
 $(PRAGMA_DIRECTORY)/bgui_lib.h:       $(PRAGMA_DIRECTORY) include/pragma/bgui_lib.h 
 $(INLINE_DIRECTORY)/bgui.h:           $(INLINE_DIRECTORY) include/inline/bgui.h
 $(FD_DIRECTORY)/bgui_lib.fd:          $(FD_DIRECTORY) include/bgui_lib.fd
@@ -1123,7 +1123,7 @@ clean:
    @echo "Deleting utility programs..."
    -@delete QUIET build-sasc/KillBGUI build-sasc/MakeProto build-sasc/CAD build-sasc/BGUI build-sasc/Tap
    @echo "Deleting BGUI library..."
-   -@delete QUIET //SDK/libs/bgui.library build-sasc/bgui.library.(D|S|E)
+   -@delete QUIET  /SDK/libs/bgui.library build-sasc/bgui.library.(D|S|E)
    @echo "Deleting intermediate files..."
    -@delete QUIET o/~(dummy.h|CVS) build-sasc/\#?.lnk
    @echo "Clean rexxbgui.library and intermediate files..."

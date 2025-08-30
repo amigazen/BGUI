@@ -1,7 +1,7 @@
 #ifndef LIBRARIES_BGUI_MACROS_H
 #define LIBRARIES_BGUI_MACROS_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/libraries_bgui_macros.h,v 41.11 2000/05/09 20:37:23 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: libraries/bgui_macros.h 41.10 (13.8.99)
  * bgui.library macros.
@@ -9,7 +9,10 @@
  * (C) Copyright 1999 BGUI development team.
  * All Rights Reserved.
  *
- * $Log: libraries_bgui_macros.h,v $
+ * $Log$
+ * Revision 42.0  2000/05/09 22:23:40  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:37:23  mlemos
  * Bumped to revision 41.11
  *

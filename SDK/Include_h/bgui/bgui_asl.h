@@ -1,7 +1,7 @@
 #ifndef BGUI_ASL_H
 #define BGUI_ASL_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/bgui_asl.h,v 41.11 2000/05/09 20:01:45 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: bgui/bgui_asl.h 41.10 (25.4.96)
  * Asl requester class structures and constants.
@@ -12,7 +12,10 @@
  * (C) Copyright 1993-1996 Jan van den Baard.
  * All Rights Reserved.
  *
- * $Log: bgui_asl.h,v $
+ * $Log$
+ * Revision 42.0  2000/05/09 22:23:07  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:01:45  mlemos
  * Merged with the branch Manuel_Lemos_fixes.
  *

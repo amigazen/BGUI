@@ -1,0 +1,9 @@
+if D eq D
+sc lib.c objname o/lib_D.o DEBUG=FULLFLUSH DEFINE DEBUG_BGUI
+endif
+if D eq S
+sc lib.c objname o/lib_D.o NODEBUG OPT
+endif
+if D eq E
+sc lib.c objname o/lib_D.o NODEBUG OPT OPTTIME CPU=68020 DEFINE=ENHANCED
+endif

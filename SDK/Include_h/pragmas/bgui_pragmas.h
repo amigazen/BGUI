@@ -1,7 +1,7 @@
 #ifndef BGUIBase_PRAGMA_H
 #define BGUIBase_PRAGMA_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/bgui_pragmas.h,v 41.11 2000/05/09 20:01:57 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: bgui_pragmas.h 41.10 (20.1.97)
  *
@@ -11,7 +11,10 @@
  * (C) Copyright 1993-1996 Jan van den Baard.
  * All Rights Reserved.
  *
- * $Log: bgui_pragmas.h,v $
+ * $Log$
+ * Revision 42.0  2000/05/09 22:23:23  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:01:57  mlemos
  * Merged with the branch Manuel_Lemos_fixes.
  *

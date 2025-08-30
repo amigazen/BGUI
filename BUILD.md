@@ -1,4 +1,4 @@
-@(#) $Id$
+# Build Instructions
 
 1. About this document
 

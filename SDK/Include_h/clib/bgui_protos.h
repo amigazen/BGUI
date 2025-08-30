@@ -1,7 +1,7 @@
 #ifndef CLIB_BGUI_PROTOS_H
 #define CLIB_BGUI_PROTOS_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/bgui_protos.h,v 41.11 2000/05/09 20:02:02 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: clib/bgui_protos.h 41.10 (20.1.97)
  * bgui.library prototypes. For use with 32 bit integers only.
@@ -12,9 +12,18 @@
  * (C) Copyright 1993-1996 Jan van den Baard.
  * All Rights Reserved.
  *
- * $Log: bgui_protos.h,v $
- * Revision 41.11  2000/05/09 20:02:02  mlemos
- * Merged with the branch Manuel_Lemos_fixes.
+ * $Log$
+ * Revision 42.3  2003/07/24 08:41:42  iaint
+ * Convert the type of any tag values to be Tag. This means they get mapped to
+ * STACKULONG as appropriate.
+ *
+ * Discussed (with general approval) on the aros-dev list.
+ *
+ * Revision 42.2  2003/01/18 19:10:21  chodorowski
+ * Instead of using the _AROS or __AROS preprocessor symbols, use __AROS__.
+ *
+ * Revision 42.1  2000/05/29 00:40:25  bergers
+ * Update to compile with AROS now. Should also still compile with SASC etc since I only made changes that test the define __AROS__. The compilation is still very noisy but it does the trick for the main directory. Maybe members of the BGUI team should also have a look at the compiler warnings because some could also cause problems on other systems... (Comparison always TRUE due to datatype (or something like that)). And please compile it on an Amiga to see whether it still works... Thanks.
  *
  * Revision 41.10.2.2  1998/02/26 22:06:50  mlemos
  * Corrected bgui.h include path
@@ -73,7 +82,9 @@ ULONG BGUI_UnpackStructureTags( APTR pack, ULONG *packTable, struct TagItem *tag
 
 /* varargs */
 Object *BGUI_NewObject( ULONG, Tag, ... );
-ULONG BGUI_Request( struct Window *, struct bguiRequest *, ... );
-ULONG BGUI_DoGadgetMethod( Object *, struct Window *, struct Requester *, ULONG, ... );
-Class *BGUI_MakeClass( ULONG, ... );
+#define BGUI_Request(win, breq, ...) \
+	({ IPTR __args[] = { AROS_PP_VARIADIC_CAST2IPTR(__VA_ARGS__) }; \
+	   BGUI_RequestA(win, breq, __args); })
+ULONG BGUI_DoGadgetMethod( Object *, struct Window *, struct Requester *, IPTR, ... );
+Class *BGUI_MakeClass( Tag, ... );
 #endif

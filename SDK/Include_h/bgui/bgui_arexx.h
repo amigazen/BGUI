@@ -1,7 +1,7 @@
 #ifndef BGUI_AREXX_H
 #define BGUI_AREXX_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/bgui_arexx.h,v 41.11 2000/05/09 20:37:09 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: bgui_arexx.h 41.10 (11.10.98)
  * C Header for the BOOPSI ARexx interface class.
@@ -12,7 +12,48 @@
  * (C) Copyright 1993-1996 Jan van den Baard.
  * All Rights Reserved.
  *
- * $Log: bgui_arexx.h,v $
+ * $Log$
+ * Revision 42.11  2004/06/16 20:16:49  verhaegs
+ * Use METHODPROTO, METHOD_END and REGFUNCPROTOn where needed.
+ *
+ * Revision 42.10  2003/01/18 19:10:21  chodorowski
+ * Instead of using the _AROS or __AROS preprocessor symbols, use __AROS__.
+ *
+ * Revision 42.9  2000/08/09 10:17:25  chodorowski
+ * #include <bgui/bgui_compilerspecific.h> for the REGFUNC and REGPARAM
+ * macros. Some of these files didn't need them at all...
+ *
+ * Revision 42.8  2000/08/08 20:24:51  stegerg
+ * had to remove the "compilerspecific.h" #include and instead insert
+ * the REGPARAM/etc. macros also in this file. This is because compilerspecific.h
+ * can be used only by the stuff coming in the BGUI source package.
+ * Apps like the BGUI version of the calculator cannot use it.
+ *
+ * Revision 42.7  2000/08/08 14:02:08  chodorowski
+ * Removed all REGFUNC, REGPARAM and REG macros. Now includes
+ * contrib/bgui/compilerspecific.h where they are defined.
+ *
+ * Revision 42.6  2000/08/07 21:50:30  stegerg
+ * fixed/activated REGFUNC/REGPARAM macros.
+ *
+ * Revision 42.5  2000/07/07 17:15:54  stegerg
+ * stack??? stuff in method structs.
+ *
+ * Revision 42.4  2000/07/03 20:58:42  bergers
+ * Automatically installs library and test program in AROS work directory.
+ *
+ * Revision 42.3  2000/07/02 04:32:45  bergers
+ * Removed a noisy warning.
+ *
+ * Revision 42.2  2000/05/29 00:40:25  bergers
+ * Update to compile with AROS now. Should also still compile with SASC etc since I only made changes that test the define __AROS__. The compilation is still very noisy but it does the trick for the main directory. Maybe members of the BGUI team should also have a look at the compiler warnings because some could also cause problems on other systems... (Comparison always TRUE due to datatype (or something like that)). And please compile it on an Amiga to see whether it still works... Thanks.
+ *
+ * Revision 42.1  2000/05/15 19:28:20  stegerg
+ * REG() macro replacementes
+ *
+ * Revision 42.0  2000/05/09 22:23:05  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:37:09  mlemos
  * Bumped to revision 41.11
  *
@@ -45,6 +86,10 @@
 #include <dos/rdargs.h>
 #endif
 
+#ifdef __AROS__
+// Not including any AREXX includes
+#else
+
 #ifndef REXX_STORAGE_H
 #include <rexx/storage.h>
 #endif
@@ -57,12 +102,18 @@
 #include <rexx/errors.h>
 #endif
 
+#endif /* __AROS__ */
+
 #ifndef INTUITION_CLASSES_H
 #include <intuition/classes.h>
 #endif
 
 #ifndef INTUITION_CLASSUSR_H
 #include <intuition/classusr.h>
+#endif
+
+#ifndef BGUI_COMPILERSPECIFIC_H
+#include <bgui/bgui_compilerspecific.h>
 #endif
 
 /* Tags */
@@ -83,8 +134,13 @@
 /* Execute a host command. */
 #define AREXXM_EXECUTE                  (AREXX_MB+2)
 
+#ifndef __AROS__
+#undef STACKULONG
+#define STACKULONG ULONG
+#endif
+
 struct acmExecute {
-        ULONG                   MethodID;
+        STACKULONG                   MethodID;
         UBYTE                  *acme_CommandString;
         LONG                   *acme_RC;
         LONG                   *acme_RC2;
@@ -105,43 +161,20 @@ typedef struct {
 }       REXXARGS;
 
 /*
- * Compiler specific stuff.
- */
-#ifdef _DCC
-#ifndef ASM
-#define ASM
-#endif
-#ifndef REG
-#define REG(x)    __ ## x
-#endif
-#elif __STORM__
-#ifndef SAVEDS
-#define SAVEDS    __saveds
-#endif
-#ifndef ASM
-#define ASM
-#endif
-#ifndef REG
-#define REG(x)    register __ ## x
-#endif
-#else
-#ifndef ASM
-#define ASM       __asm
-#endif
-#ifndef REG
-#define REG(x)    register __ ## x
-#endif
-#endif
-
-/*
 **      An array of these structures must be passed at object-create time.
 **/
+#ifdef __AROS__
+//#warning Deactivated the following typedef
+#else
 typedef struct {
         UBYTE                   *rc_Name;         /* Command name. */
         UBYTE                   *rc_ArgTemplate;  /* DOS-style argument template. */
-        ASM VOID                (*rc_Func)( REG(a0) REXXARGS *, REG(a1) struct RexxMsg * );
+//        ASM VOID                (*rc_Func)( REG(a0) REXXARGS *, REG(a1) struct RexxMsg * );
+        ASM REGFUNCPROTO2(VOID, (*rc_Func),
+                REGPARAM(A0, REXXARGS *,),
+                REGPARAM(A1, struct RexxMsg *, ));
 }       REXXCOMMAND;
-
+#endif
 /*
 **      Possible errors.
 **/

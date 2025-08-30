@@ -1,7 +1,7 @@
 #ifndef BGUI_BGUI_MACROS_H
 #define BGUI_BGUI_MACROS_H
 /*
- * @(#) $Header: /cvsroot/bgui/include/bgui_macros.h,v 41.11 2000/05/09 20:01:52 mlemos Exp $
+ * @(#) $Header$
  *
  * $VER: libraries/bgui_macros.h 41.10 (19.1.97)
  * bgui.library macros.
@@ -12,7 +12,28 @@
  * (C) Copyright 1993-1996 Jan van den Baard.
  * All Rights Reserved.
  *
- * $Log: bgui_macros.h,v $
+ * $Log$
+ * Revision 42.6  2003/01/18 19:10:21  chodorowski
+ * Instead of using the _AROS or __AROS preprocessor symbols, use __AROS__.
+ *
+ * Revision 42.5  2000/08/08 20:57:28  chodorowski
+ * Minor fixes to build on Amiga.
+ *
+ * Revision 42.4  2000/08/08 14:03:07  chodorowski
+ * Removed all REGFUNC, REGPARAM and REG macros (not needed here).
+ *
+ * Revision 42.3  2000/08/07 21:51:05  stegerg
+ * fixed/activated REGFUNC/REGPARAM macros.
+ *
+ * Revision 42.2  2000/05/29 00:40:25  bergers
+ * Update to compile with AROS now. Should also still compile with SASC etc since I only made changes that test the define __AROS__. The compilation is still very noisy but it does the trick for the main directory. Maybe members of the BGUI team should also have a look at the compiler warnings because some could also cause problems on other systems... (Comparison always TRUE due to datatype (or something like that)). And please compile it on an Amiga to see whether it still works... Thanks.
+ *
+ * Revision 42.1  2000/05/15 19:28:20  stegerg
+ * REG() macro replacementes
+ *
+ * Revision 42.0  2000/05/09 22:23:17  mlemos
+ * Bumped to revision 42.0 before handing BGUI to AROS team
+ *
  * Revision 41.11  2000/05/09 20:01:52  mlemos
  * Merged with the branch Manuel_Lemos_fixes.
  *
@@ -39,40 +60,14 @@
 #include <libraries/bgui.h>
 #endif /* LIBRARIES_BGUI_H */
 
-/*
- * Compiler specific stuff.
- */
-#ifdef _DCC
-#ifndef SAVEDS
-#define SAVEDS    __geta4
-#endif
-#ifndef ASM
-#define ASM
-#endif
-#ifndef REG
-#define REG(x)    __ ## x
-#endif
-#elif __STORM__
-#ifndef SAVEDS
-#define SAVEDS    __saveds
-#endif
-#ifndef ASM
-#define ASM
-#endif
-#ifndef REG
-#define REG(x)    register __ ## x
-#endif
+#ifndef CLIB_ALIB_PROTOS_H
+#ifdef __AROS__
+#include <proto/alib.h>
 #else
-#ifndef SAVEDS
-#define SAVEDS    __saveds
+#include <clib/alib_protos.h>
 #endif
-#ifndef ASM
-#define ASM       __asm
-#endif
-#ifndef REG
-#define REG(x)    register __ ## x
-#endif
-#endif
+#endif /* CLIB_ALIB_PROTOS_H */
+
 
 /*****************************************************************************
  *
@@ -973,7 +968,7 @@
         DoMethod( wobj, WM_GADGETKEY, NULL, gobj, key )
 
 #define WindowOpen(wobj)\
-        ( struct Window * )DoMethod( wobj, WM_OPEN )
+        ({struct Window *win = (struct Window *)DoMethod( wobj, WM_OPEN );win;})
 
 #define WindowClose(wobj)\
         DoMethod( wobj, WM_CLOSE )
